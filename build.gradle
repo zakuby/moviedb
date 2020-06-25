@@ -1,14 +1,100 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
-    ext.kotlin_version = "1.3.72"
+    ext.versions = [
+            'minSdk'                : 16,
+            'compileSdk'            : 29,
+            'buildTools'            : '29.0.3',
+
+            'code'                  : 1,
+            'name'                  : "1.0",
+
+            'ktx'                   : "1.2.0",
+
+            'appcompat_lib'         : '1.1.0',
+            'ktlint'                : '9.2.1',
+            'material'              : '1.1.0',
+            'android_gradle'        : '4.0.0',
+            'kotlin'                : '1.3.72',
+            'constraint_layout'     : '1.1.3',
+            'dagger'                : '2.26',
+            'rx_java'               : '2.1.9',
+            'rx_android'            : '2.0.2',
+            'rx_kotlin'             : '2.1.0',
+            'retrofit'              : '2.3.0',
+            'okhttp'                : '3.8.1',
+            'gson'                  : '1.5.0',
+            'picasso'               : '2.71828',
+
+            'navigation'            : '2.2.1',
+            'lifeycle'              : '2.2.0',
+            'paging'                : '2.1.1',
+
+            'sourceCompat'          : JavaVersion.VERSION_1_8,
+            'targetCompat'          : JavaVersion.VERSION_1_8,
+    ]
+    ext.deps = [
+            android    : [
+                    'gradle': "com.android.tools.build:gradle:${versions.android_gradle}"
+            ],
+            kotlin     : [
+                    'stdlib'    : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+                    'gradle'    : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+            ],
+            ktx     : [
+                    'core'    : "androidx.core:core-ktx:${versions.ktx}"
+            ],
+            support    : [
+                    'appcompat'   : "androidx.appcompat:appcompat:${versions.support_lib}",
+                    'material'  : "com.google.android.material:material:${versions.material}",
+                    'constraint' : "com.android.support.constraint:constraint-layout:${versions.constraint_layout}"
+            ],
+            navigation : [
+                    "safe_args" : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}",
+                    "runtime" : "androidx.navigation:navigation-runtime-ktx:${versions.navigation}",
+                    "fragment" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+                    "ui" : "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+            ],
+            google     : [
+                    'dagger'        : "com.google.dagger:dagger:${versions.dagger}",
+                    'compiler'      : "com.google.dagger:dagger-compiler:${versions.dagger}",
+                    'dagger_support': "com.google.dagger:dagger-android-support:${versions.dagger}",
+                    'processor'     : "com.google.dagger:dagger-android-processor:${versions.dagger}"
+            ],
+            reactivex  : [
+                    'rxjava'   : "io.reactivex.rxjava2:rxjava:${versions.rx_java}",
+                    'rxandroid': "io.reactivex.rxjava2:rxandroid:${versions.rx_android}",
+                    'rxkotlin' : "io.reactivex.rxjava2:rxkotlin:${versions.rx_kotlin}"
+            ],
+            square     : [
+                    'retrofit': "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    'adapter_rxjava' : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+                    'gson' : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+                    'okhttp' : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+            ],
+            aac: [
+                    'extensions'    : "android.arch.lifecycle:extensions:${versions.lifeycle}",
+                    'paging'        : "android.arch.lifecycle:viewmodel:${versions.paging}"
+            ],
+            others     : [
+                    'picasso'   : "com.squareup.picasso:picasso:${versions.picasso}",
+                    'ktlint'    : "org.jlleitschuh.gradle:ktlint-gradle:${versions.ktlint}"
+            ],
+            test       : [
+                    'junit'   : "junit:junit:${versions.junit}",
+                    'runner'  : "com.android.support.test:runner:${versions.runner}",
+                    'espresso': "com.android.support.test.espresso:espresso-core:${versions.espresso}"
+            ]
+    ]
     repositories {
         google()
         jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
+        classpath deps.android.gradle
+        classpath deps.kotlin.gradle
+        classpath deps.navigation.safe_args
+        classpath deps.others.ktlint
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,7 +104,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+
     }
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
 }
 
 task clean(type: Delete) {
