@@ -24,6 +24,6 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(DetailViewModel::class)
-    internal abstract fun movieDetailViewModel(viewModel: DetailViewModel): ViewModel
+    internal abstract fun detailViewModel(viewModel: DetailViewModel): ViewModel
 
 }

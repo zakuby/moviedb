@@ -1,11 +1,16 @@
 package org.moviedb.data.local.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.paging.PageKeyedDataSource
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.moviedb.data.local.models.Cast
 import org.moviedb.data.local.models.Movie
+import org.moviedb.data.local.models.Review
 import org.moviedb.data.local.models.Video
+import org.moviedb.data.local.source.MovieDataSource
 import org.moviedb.data.remote.ApiCallHelper
 import org.moviedb.data.remote.TheMovieDbServices
 import org.moviedb.data.remote.Result
@@ -64,6 +69,48 @@ class DetailRepository @Inject constructor(
             is Result.Error -> {
                 emit(Result.Loading(false))
                 emit(Result.Error(ErrorResponse(404, "Data is empty")))
+            }
+        }
+    }
+
+    fun fetchReviewsInitial(
+        scope: CoroutineScope,
+        id: Int,
+        initialEmpty: MutableLiveData<Boolean>,
+        initialLoading: MutableLiveData<Boolean>,
+        callback: PageKeyedDataSource.LoadInitialCallback<Int, Review>
+    ) {
+        scope.launch {
+            initialLoading.postValue(true)
+            when (val resp = ApiCallHelper.getResult { services.getMovieReviews(id) }) {
+                is Result.Success -> {
+                    initialLoading.postValue(false)
+                    if (!resp.data.results.isNullOrEmpty()) {
+                        callback.onResult(resp.data.results, null, 2)
+                        initialEmpty.postValue(false)
+                    } else initialEmpty.postValue(true)
+                }
+                is Result.Error -> {
+                    initialLoading.postValue(false)
+                    initialEmpty.postValue(true)
+                }
+            }
+        }
+    }
+
+
+    fun fetchReviews(
+        scope: CoroutineScope,
+        page: Int,
+        id: Int,
+        callback: PageKeyedDataSource.LoadCallback<Int, Review>
+    ) {
+        scope.launch {
+            when (val resp = ApiCallHelper.getResult { services.getMovieReviews(id, page) }) {
+                is Result.Success -> {
+                    resp.data.results ?: return@launch
+                    callback.onResult(resp.data.results, page + 1)
+                }
             }
         }
     }

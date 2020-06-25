@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -86,7 +87,8 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(R.layout.fragment_mov
     }
 
     private fun navigateToDetail(movie: Movie){
-
+        val action = MoviesFragmentDirections.actionBottomNavFragmentToDetailFragment(movie.id)
+        findNavController().navigate(action)
     }
 
     private fun setButtonFilterListener(genres: List<Genre>) = genreAdapter.loadItems(genres)

@@ -10,8 +10,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="viewModel"
-            type="org.moviedb.ui.detail.DetailViewModel" />
+            name="model"
+            type="org.moviedb.data.local.models.Movie" />
 
     </data>
 
@@ -20,10 +20,10 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/parent_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            app:isGone="@{viewModel.loading}"
             app:layoutDescription="@xml/collapsing_movie_detail"
             tools:visibility="visible">
 
@@ -40,7 +40,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                bind:loadImageUrl="@{viewModel.movie.backgroundImage}"
+                bind:loadImageUrl="@{model.backgroundImage}"
                 tools:src="@drawable/backdrop_spiderman" />
 
 
@@ -79,7 +79,7 @@
                     android:layout_width="100dp"
                     android:layout_height="150dp"
                     android:src="@color/athens_gray"
-                    bind:loadImageUrl="@{viewModel.movie.posterImage}"
+                    bind:loadImageUrl="@{model.posterImage}"
                     tools:ignore="ContentDescription"
                     tools:src="@drawable/poster_spiderman" />
             </androidx.cardview.widget.CardView>
@@ -105,7 +105,7 @@
                     android:max="100"
                     android:progressDrawable="@drawable/bg_circular_progress_green"
                     android:secondaryProgress="100"
-                    bind:setProgressRating="@{viewModel.movie.rate}"
+                    bind:setProgressRating="@{model.rate}"
                     tools:progress="86" />
 
             </FrameLayout>
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@{viewModel.movie.rate}"
+                android:text="@{model.rate}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -130,7 +130,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@string/roboto_black"
-                android:text="@{viewModel.movie.title}"
+                android:text="@{model.title}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginStart="10dp"
@@ -152,7 +152,7 @@
                 android:gravity="start"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:formatDate="@{viewModel.movie.date}"
+                app:formatDate="@{model.date}"
                 app:layout_constraintLeft_toLeftOf="@id/movie_title"
                 app:layout_constraintRight_toRightOf="@id/movie_title"
                 app:layout_constraintTop_toBottomOf="@id/movie_title"
@@ -191,7 +191,7 @@
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="24dp"
                         android:fontFamily="@string/roboto_regular"
-                        android:text="@{viewModel.movie.description}"
+                        android:text="@{model.description}"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintTop_toBottomOf="@id/movie_overview_header"
@@ -229,17 +229,14 @@
                         android:id="@+id/container_cast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="@{viewModel.isErrorCast ? View.GONE : View.VISIBLE}"
                         app:layout_constraintTop_toBottomOf="@id/recycler_view_genre">
 
 
                         <com.facebook.shimmer.ShimmerFrameLayout
-                            android:id="@+id/shimmer_view"
+                            android:id="@+id/shimmer_view_cast"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             shimmer:shimmer_auto_start="true"
-                            app:isGone="@{!viewModel.detailCastLoading}"
-                            app:isShimmer="@{viewModel.detailCastLoading}"
                             tools:visibility="gone">
 
                             <LinearLayout
@@ -271,7 +268,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:visibility="gone"
-                            app:isGone="@{viewModel.detailCastLoading}"
                             tools:visibility="visible">
 
                             <TextView
@@ -309,7 +305,6 @@
                         android:id="@+id/container_videos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="@{viewModel.isErrorVideo ? View.GONE : View.VISIBLE}"
                         app:layout_constraintTop_toBottomOf="@id/container_cast">
 
 
@@ -318,8 +313,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             shimmer:shimmer_auto_start="true"
-                            app:isGone="@{!viewModel.detailVideosLoading}"
-                            app:isShimmer="@{viewModel.detailVideosLoading}"
                             tools:visibility="gone">
 
                             <LinearLayout
@@ -338,7 +331,7 @@
                                     app:cardElevation="0dp" />
 
 
-                                <include layout="@layout/skeleton_recycler_list_cast" />
+                                <include layout="@layout/skeleton_recycler_list_video" />
 
                             </LinearLayout>
 
@@ -351,7 +344,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:visibility="gone"
-                            app:isGone="@{viewModel.detailVideosLoading}"
                             tools:visibility="visible">
 
                             <TextView
@@ -379,7 +371,7 @@
                                 android:paddingBottom="24dp"
                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 tools:itemCount="5"
-                                tools:listitem="@layout/list_item_detail_video" />
+                                tools:listitem="@layout/list_item_video" />
                         </LinearLayout>
 
 
@@ -469,10 +461,10 @@
         </androidx.constraintlayout.motion.widget.MotionLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:isGone="@{!viewModel.loading}"
-            app:isShimmer="@{viewModel.loading}"
+            app:shimmer_auto_start="true"
             tools:visibility="gone">
             <include layout="@layout/skeleton_fragment_detail"/>
         </com.facebook.shimmer.ShimmerFrameLayout>

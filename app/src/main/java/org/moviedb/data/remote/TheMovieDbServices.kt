@@ -50,11 +50,11 @@ interface TheMovieDbServices {
     suspend fun getMovieVideos(
         @Path("id") id: Int
     ): Response<MovieTrailersResponse>
-//
-//    @GET("movie/{id}/reviews")
-//    fun getMovieReviews(
-//        @Path("id") id: Int,
-//        @Query("page") page: Int = 1
-//    ): Response<BaseListResponse<Review>>
+
+    @GET("movie/{id}/reviews")
+    suspend fun getMovieReviews(
+        @Path("id") id: Int,
+        @Query("page") page: Int = 1
+    ): Response<BaseListResponse<Review>>
 
 }
