@@ -19,7 +19,7 @@ interface TheMovieDbServices {
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("language") lang: String = "en-US",
-        @Query("page") page: Int
+        @Query("page") page: Int = 1
     ): Response<BaseListResponse<Movie>>
 
     @GET("search/movie")

@@ -16,8 +16,6 @@ data class Movie(
     val posterImage: String?,
     @SerializedName("backdrop_path")
     val backgroundImage: String?,
-    val isMovie: Boolean? = true,
-    var isFavorite: Boolean = false,
     val genres: List<Genre>? = emptyList()
 ) {
 
