@@ -15,7 +15,7 @@ buildscript {
             'material'              : '1.1.0',
             'android_gradle'        : '4.0.0',
             'kotlin'                : '1.3.72',
-            'constraint_layout'     : '1.1.3',
+            'constraint_layout'     : '2.0.0-beta7',
             'dagger'                : '2.26',
             'rx_java'               : '2.1.9',
             'rx_android'            : '2.0.2',
@@ -28,6 +28,8 @@ buildscript {
             'navigation'            : '2.2.1',
             'lifeycle'              : '2.2.0',
             'paging'                : '2.1.1',
+            'preference'            : '1.1.1',
+            'shimmer'               : '0.4.0',
 
             'sourceCompat'          : JavaVersion.VERSION_1_8,
             'targetCompat'          : JavaVersion.VERSION_1_8,
@@ -46,7 +48,7 @@ buildscript {
             support    : [
                     'appcompat'   : "androidx.appcompat:appcompat:${versions.support_lib}",
                     'material'  : "com.google.android.material:material:${versions.material}",
-                    'constraint' : "com.android.support.constraint:constraint-layout:${versions.constraint_layout}"
+                    'constraint' : "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}"
             ],
             navigation : [
                     "safe_args" : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}",
@@ -73,11 +75,13 @@ buildscript {
             ],
             aac: [
                     'extensions'    : "android.arch.lifecycle:extensions:${versions.lifeycle}",
-                    'paging'        : "android.arch.lifecycle:viewmodel:${versions.paging}"
+                    'paging'        : "androidx.paging:paging-runtime-ktx:${versions.paging}"
             ],
             others     : [
                     'picasso'   : "com.squareup.picasso:picasso:${versions.picasso}",
-                    'ktlint'    : "org.jlleitschuh.gradle:ktlint-gradle:${versions.ktlint}"
+                    'ktlint'    : "org.jlleitschuh.gradle:ktlint-gradle:${versions.ktlint}",
+                    'preference' : "androidx.preference:preference:${versions.preference}",
+                    'shimmer_facebook' : "com.facebook.shimmer:shimmer:${versions.shimmer}"
             ],
             test       : [
                     'junit'   : "junit:junit:${versions.junit}",

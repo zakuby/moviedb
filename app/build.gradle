@@ -19,13 +19,20 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'API_KEY', '"1a126cf2d173cb236c4e2aace5aa86d1"'
+//            signingConfig signingConfigs.production
+        }
+        debug {
+            buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'API_KEY', '"1a126cf2d173cb236c4e2aace5aa86d1"'
         }
     }
-
-    androidExtensions {
-        experimental = true
+    buildFeatures {
+        dataBinding = true
     }
 
     compileOptions {
@@ -46,6 +53,7 @@ dependencies {
 
     //Android Architecture Component
     implementation deps.aac.extensions
+    implementation deps.aac.paging
 
     //Ktx
     implementation deps.ktx.core
@@ -66,11 +74,17 @@ dependencies {
     implementation deps.reactivex.rxandroid
     implementation deps.reactivex.rxkotlin
 
+    //Preference Screen
+    implementation deps.others.preference
+
     //Dagger
     implementation deps.google.dagger
     implementation deps.google.dagger_support
     kapt deps.google.compiler
     kapt deps.google.processor
+
+    implementation deps.others.picasso
+    implementation deps.others.shimmer_facebook
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

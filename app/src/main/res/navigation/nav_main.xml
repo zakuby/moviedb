@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_movie"
+    app:startDestination="@id/movies_fragment">
+
+    <action
+        android:id="@+id/action_to_settings"
+        app:destination="@id/settings_fragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="org.moviedb.ui.SettingsFragment"
+        android:label="@string/title_settings" />
+
+    <fragment
+        android:id="@+id/movies_fragment"
+        android:name="org.moviedb.ui.movie.MoviesFragment"
+        android:label="@string/movie_list_title"
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/action_bottom_nav_fragment_to_detail_fragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_top"
+            app:destination="@id/detail_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_fragment"
+        android:name="org.moviedb.ui.detail.DetailFragment"
+        android:label="@string/movie_detail_title"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+</navigation>

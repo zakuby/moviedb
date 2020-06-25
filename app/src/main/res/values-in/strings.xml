@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_no_internet_connection">Tidak ada koneksi internet\n Silakan coba lagi.</string>
+    <string name="button_retry">Coba Lagi</string>
+    <string name="list_item_movie_image_desc">Gambar Film</string>
+    <string name="movie_detail_overview">Sinopsis</string>
+    <string name="movie_detail_title">Detail Film</string>
+    <string name="movie_detail_top_billed">Aktor Utama</string>
+    <string name="movie_list_more_info">Info lebih lanjut</string>
+    <string name="title_settings">Pengaturan</string>
+    <string name="error_response_data">Ada yang salah dengan data respons.</string>
+    <string name="error_internal">Kesalahan server dari dalam.</string>
+    <string name="error_hotspot_login">Diperlukan login hotspot.</string>
+    <string name="error_request_timeout">Permintaan Timeout</string>
+    <string name="hint_search_movie">Cari Film…</string>
+    <string name="pref_language_summary">Pilih bahasa Inggris atau Indoneisa.</string>
+    <string name="pref_language_name">Bahasa</string>
+    <string name="language_mode_en">Bahasa Inggris</string>
+    <string name="language_mode_in">Bahasa Indonesia</string>
+    <string name="movie_detail_genre">Kategori</string>
+    <string name="dlg_bottom_filter_title">Filter dengan Kategori</string>
+    <string name="button_add_apply">Terapkan Filter</string>
+    <string name="review_read_full">Baca Ulasan Lengkap</string>
+    <string name="movie_detail_reviews">Ulasan</string>
+</resources>
