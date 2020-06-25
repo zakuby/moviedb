@@ -9,7 +9,7 @@ android {
     buildToolsVersion versions.buildTools
 
     defaultConfig {
-        applicationId "com.pudamtirtalawu.karanganyar"
+        applicationId "org.moviedb"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
         versionCode versions.code
@@ -53,6 +53,8 @@ dependencies {
 
     //Android Architecture Component
     implementation deps.aac.extensions
+    implementation deps.aac.livedata
+    implementation deps.aac.viewmodel
     implementation deps.aac.paging
 
     //Ktx
@@ -64,10 +66,14 @@ dependencies {
     implementation deps.navigation.ui
 
     //Networking
-    implementation deps.square.retrofit
-    implementation deps.square.adapter_rxjava
-    implementation deps.square.gson
-    implementation deps.square.okhttp
+    implementation deps.network.retrofit
+    implementation deps.network.adapter_rxjava
+    implementation deps.network.gson
+    implementation deps.network.okhttp
+
+    //Coroutines
+    implementation deps.coroutines.android
+    implementation deps.coroutines.core
 
     //ReactiveX
     implementation deps.reactivex.rxjava

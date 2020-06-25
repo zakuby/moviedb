@@ -1,68 +1,57 @@
 package org.moviedb.data.remote
 
-import io.reactivex.Single
 import org.moviedb.data.local.models.Movie
 import org.moviedb.data.local.models.Review
 import org.moviedb.data.remote.response.BaseListResponse
 import org.moviedb.data.remote.response.GenreResponse
 import org.moviedb.data.remote.response.MovieCreditsResponse
 import org.moviedb.data.remote.response.MovieTrailersResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.text.SimpleDateFormat
-import java.util.*
 
 interface TheMovieDbServices {
 
-    @GET("movie/{movie_id}")
-    fun getMovieDetail(@Path("movie_id") movieId: Int): Single<Movie>
+    @GET("genre/movie/list")
+    suspend fun getMovieGenres(@Query("language") lang: String = "en-US"): Response<GenreResponse>
 
     @GET("movie/popular")
-    fun getPopularMovies(
+    suspend fun getPopularMovies(
         @Query("language") lang: String = "en-US",
-        @Query("page") page: Int = 1
-    ): Single<BaseListResponse<Movie>>
-
-    @GET("discover/movie")
-    fun getTodayReleaseMovies(
-        @Query("language") lang: String = "en-US",
-        @Query("page") page: Int = 1,
-        @Query("primary_release_date.gte") dateGte: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()),
-        @Query("primary_release_date.lte") dateLte: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-    ): Single<BaseListResponse<Movie>>
+        @Query("page") page: Int
+    ): Response<BaseListResponse<Movie>>
 
     @GET("search/movie")
-    fun searchMovies(
+    suspend fun searchMovies(
         @Query("language") lang: String = "en-US",
-        @Query("page") page: Int = 1,
+        @Query("page") page: Int,
         @Query("query") keyword: String
-    ): Single<BaseListResponse<Movie>>
-
-    @GET("genre/movie/list")
-    fun getMovieGenres(@Query("language") lang: String = "en-US"): Single<GenreResponse>
+    ): Response<BaseListResponse<Movie>>
 
     @GET("discover/movie")
-    fun searchByGenres(
+    suspend fun searchByGenres(
         @Query("language") lang: String = "en-US",
-        @Query("page") page: Int = 1,
+        @Query("page") page: Int,
         @Query("with_genres") genres: String
-    ): Single<BaseListResponse<Movie>>
+    ): Response<BaseListResponse<Movie>>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetail(@Path("movie_id") movieId: Int): Response<Movie>
 
     @GET("movie/{id}/credits")
-    fun getMovieCredits(
+    suspend fun getMovieCredits(
         @Path("id") id: Int
-    ): Single<MovieCreditsResponse>
+    ): Response<MovieCreditsResponse>
 
     @GET("movie/{id}/videos")
-    fun getMovieVideos(
+    suspend fun getMovieVideos(
         @Path("id") id: Int
-    ): Single<MovieTrailersResponse>
+    ): Response<MovieTrailersResponse>
 
     @GET("movie/{id}/reviews")
-    fun getMovieReviews(
+    suspend fun getMovieReviews(
         @Path("id") id: Int,
         @Query("page") page: Int = 1
-    ): Single<BaseListResponse<Review>>
-
+    ): Response<BaseListResponse<Review>>
 }

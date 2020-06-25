@@ -10,9 +10,9 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import org.moviedb.R
 import java.util.*
 import javax.inject.Inject
+import org.moviedb.R
 
 class SettingsFragment : PreferenceFragmentCompat(), HasAndroidInjector {
 

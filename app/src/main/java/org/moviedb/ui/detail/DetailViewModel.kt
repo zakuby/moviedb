@@ -1,47 +1,49 @@
 package org.moviedb.ui.detail
 
-import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import org.moviedb.data.local.models.*
-import org.moviedb.data.remote.TheMovieDbServices
-import org.moviedb.ui.base.BaseViewModel
-import org.moviedb.utils.SingleLiveEvent
 import javax.inject.Inject
+import org.moviedb.data.local.models.*
+import org.moviedb.data.local.repository.DetailRepository
+import org.moviedb.data.local.source.DetailReviewDataSource
+import org.moviedb.data.local.source.DetailReviewDataSourceFactory
+import org.moviedb.data.remote.Result
+import org.moviedb.ui.base.BaseViewModel
 
 class DetailViewModel @Inject constructor(
-    private val service: TheMovieDbServices
+    private val repository: DetailRepository
 ) : BaseViewModel() {
 
-    private val casts = MutableLiveData<List<Cast>>()
-    fun getMovieCasts(): LiveData<List<Cast>> = casts
-    private val videos = MutableLiveData<List<Video>>()
-    fun getDetailVideos(): LiveData<List<Video>> = videos
-    private val genres = MutableLiveData<List<Genre>>()
-    fun getDetailGenre(): LiveData<List<Genre>> = genres
+    private var id: Int = 0
 
-    val onReviewLiveDataReady = SingleLiveEvent<Unit>()
-    private lateinit var reviews: LiveData<PagedList<Review>>
-    fun getDetailReview(): LiveData<PagedList<Review>> = reviews
+    fun fetchDetail(id: Int) {
+        this.id = id
+        movie = repository.fetchDetail(scope, id)
+        casts = repository.fetchMovieCast(scope, id)
+        videos = repository.fetchMovieTrailer(scope, id)
+        fetchReviews()
+    }
 
-    private val _isMovie = ObservableBoolean(true)
-    private val isMovie get() = _isMovie.get()
+    private fun fetchReviews() {
 
-    val movie = MutableLiveData<Movie>()
-    private val movieData get() = movie.value
+        val config = PagedList.Config.Builder()
+            .setPageSize(10)
+            .setInitialLoadSizeHint(10)
+            .setEnablePlaceholders(false)
+            .build()
+        val dataSource = DetailReviewDataSource(scope, repository, id)
+        val dataSourceFactory = DetailReviewDataSourceFactory(dataSource)
+        reviews = LivePagedListBuilder(dataSourceFactory, config).build()
+        initialReviewLoading = Transformations.switchMap(dataSourceFactory.getDataSource(), DetailReviewDataSource::getInitialLoading)
+        initialReviewEmpty = Transformations.switchMap(dataSourceFactory.getDataSource(), DetailReviewDataSource::getInitialEmpty)
+    }
 
-    val isMovieFavorite = ObservableBoolean(false)
-    private val isFavorite get() = isMovieFavorite.get()
-
-    val movieFavoriteLoading = ObservableBoolean(true)
-    val detailCastLoading = ObservableBoolean(false)
-    val detailVideosLoading = ObservableBoolean(false)
-    lateinit var detailReviewLoading: LiveData<Boolean>
-
-    val isErrorCast = ObservableBoolean(false)
-    val isErrorVideo = ObservableBoolean(false)
-
-    lateinit var isErrorReview: LiveData<Boolean>
-
+    lateinit var movie: LiveData<Result<Movie>>
+    lateinit var casts: LiveData<Result<List<Cast>>>
+    lateinit var videos: LiveData<Result<List<Video>>>
+    lateinit var reviews: LiveData<PagedList<Review>>
+    lateinit var initialReviewLoading: LiveData<Boolean>
+    lateinit var initialReviewEmpty: LiveData<Boolean>
 }

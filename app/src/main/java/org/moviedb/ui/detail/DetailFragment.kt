@@ -10,24 +10,27 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.moviedb.databinding.FragmentDetailBinding
-import org.moviedb.ui.base.BaseFragment
+import javax.inject.Inject
 import org.moviedb.R
 import org.moviedb.adapters.DetailGenreListAdapter
 import org.moviedb.adapters.DetailListCastAdapter
 import org.moviedb.adapters.DetailReviewListAdapter
 import org.moviedb.adapters.DetailVideoListAdapter
+import org.moviedb.data.local.models.Cast
+import org.moviedb.data.local.models.Movie
 import org.moviedb.data.local.models.Review
+import org.moviedb.data.local.models.Video
+import org.moviedb.data.remote.Result
+import org.moviedb.databinding.FragmentDetailBinding
 import org.moviedb.ui.MainActivity
 import org.moviedb.ui.WebViewActivity
+import org.moviedb.ui.base.BaseFragment
 import org.moviedb.utils.observe
-import javax.inject.Inject
 
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
 
     private val viewModel: DetailViewModel by viewModels { viewModelFactory }
 
@@ -53,7 +56,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private fun initBinding() {
         binding.apply {
-            viewModel = this@DetailFragment.viewModel
             backButton.setOnClickListener { requireActivity().onBackPressed() }
             recyclerViewCast.apply {
                 layoutManager = LinearLayoutManager(
@@ -96,22 +98,66 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         activity.supportActionBar?.show()
     }
     private fun subscribeUI() {
-        observe(viewModel.getDetailGenre(), genreAdapter::loadItems)
-        observe(viewModel.getMovieCasts(), castAdapter::loadItems)
-        observe(viewModel.getDetailVideos(), videoAdapter::loadItems)
-        observe(viewModel.onReviewLiveDataReady, {
-            observe(viewModel.getDetailReview(), reviewAdapter::submitList)
-            observe(viewModel.isErrorReview, { isError ->
-                binding.containerReview.isGone = isError
-            })
-            observe(viewModel.detailReviewLoading, { isLoading ->
-                binding.shimmerViewReview.apply {
-                    isGone = !isLoading
-                    if (isLoading) startShimmer() else stopShimmer()
-                }
-                binding.reviewView.isGone = isLoading
-            })
+        viewModel.fetchDetail(detailId)
+        observe(viewModel.casts, this::renderCasts)
+        observe(viewModel.movie, this::renderMovieDetail)
+        observe(viewModel.videos, this::renderMovieVideos)
+        observe(viewModel.reviews, reviewAdapter::submitList)
+        observe(viewModel.initialReviewEmpty, { isError ->
+            binding.containerReview.isGone = isError
         })
+        observe(viewModel.initialReviewLoading, { isLoading ->
+            binding.shimmerViewReview.apply {
+                isGone = !isLoading
+                if (isLoading) startShimmer() else stopShimmer()
+            }
+            binding.reviewView.isGone = isLoading
+        })
+    }
+
+    private fun renderCasts(result: Result<List<Cast>>) {
+        when (result) {
+            is Result.Success -> castAdapter.loadItems(result.data)
+            is Result.Error -> binding.containerCast.isGone = true
+            is Result.Loading -> binding.apply {
+                shimmerViewCast.apply {
+                    isGone = !result.isLoading
+                    if (result.isLoading) startShimmer() else stopShimmer()
+                }
+                castView.isGone = result.isLoading
+            }
+        }
+    }
+
+    private fun renderMovieDetail(result: Result<Movie>) {
+        when (result) {
+            is Result.Success -> binding.apply {
+                model = result.data
+                genreAdapter.loadItems(result.data.genres ?: emptyList())
+                executePendingBindings()
+            }
+            is Result.Loading -> binding.apply {
+                shimmerViewDetail.apply {
+                    isGone = !result.isLoading
+                    if (result.isLoading) startShimmer() else stopShimmer()
+                }
+                parentDetail.isGone = result.isLoading
+            }
+        }
+    }
+
+    private fun renderMovieVideos(result: Result<List<Video>>) {
+        when (result) {
+            is Result.Success -> videoAdapter.loadItems(result.data)
+            is Result.Error -> binding.containerVideos.isGone = true
+            is Result.Loading -> binding.apply {
+                shimmerViewVideos.apply {
+                    isGone = !result.isLoading
+                    if (result.isLoading) startShimmer() else stopShimmer()
+                }
+                videoView.isGone = result.isLoading
+            }
+        }
     }
 
     private fun viewFullReview(review: Review) {

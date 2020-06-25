@@ -1,6 +1,5 @@
 package org.moviedb.data.local.models
 
-import android.content.ContentValues
 import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.SerializedName
 

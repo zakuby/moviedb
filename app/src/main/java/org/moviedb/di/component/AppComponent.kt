@@ -7,11 +7,11 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 import org.moviedb.di.module.ActivityModule
 import org.moviedb.di.module.NetworkModule
 import org.moviedb.di.module.ViewModelModule
 import org.moviedb.ui.base.BaseApplication
-import javax.inject.Singleton
 
 @Singleton
 @Component(
