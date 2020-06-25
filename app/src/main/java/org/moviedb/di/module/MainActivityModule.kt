@@ -20,5 +20,4 @@ abstract class MainActivityModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract fun contributeMoviesFragment(): MoviesFragment
-
 }

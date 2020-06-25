@@ -4,24 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.paging.PageKeyedDataSource
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.moviedb.data.local.models.Cast
 import org.moviedb.data.local.models.Movie
 import org.moviedb.data.local.models.Review
 import org.moviedb.data.local.models.Video
-import org.moviedb.data.local.source.MovieDataSource
 import org.moviedb.data.remote.ApiCallHelper
-import org.moviedb.data.remote.TheMovieDbServices
 import org.moviedb.data.remote.Result
+import org.moviedb.data.remote.TheMovieDbServices
 import org.moviedb.data.remote.response.ErrorResponse
-import javax.inject.Inject
-import javax.inject.Singleton
 
 @Singleton
 class DetailRepository @Inject constructor(
     private val services: TheMovieDbServices
-){
+) {
 
     fun fetchDetail(scope: CoroutineScope, id: Int): LiveData<Result<Movie>> = liveData(scope.coroutineContext) {
         emit(Result.Loading(true))
@@ -42,7 +41,7 @@ class DetailRepository @Inject constructor(
         when (val resp = ApiCallHelper.getResult { services.getMovieCredits(id) }) {
             is Result.Success -> {
                 emit(Result.Loading(false))
-                if (!resp.data.cast.isNullOrEmpty()){
+                if (!resp.data.cast.isNullOrEmpty()) {
                     emit(Result.Success(resp.data.cast))
                 } else {
                     emit(Result.Error(ErrorResponse(404, "Data is empty")))
@@ -60,7 +59,7 @@ class DetailRepository @Inject constructor(
         when (val resp = ApiCallHelper.getResult { services.getMovieVideos(id) }) {
             is Result.Success -> {
                 emit(Result.Loading(false))
-                if (!resp.data.results.isNullOrEmpty()){
+                if (!resp.data.results.isNullOrEmpty()) {
                     emit(Result.Success(resp.data.results))
                 } else {
                     emit(Result.Error(ErrorResponse(404, "Data is empty")))
@@ -98,7 +97,6 @@ class DetailRepository @Inject constructor(
         }
     }
 
-
     fun fetchReviews(
         scope: CoroutineScope,
         page: Int,
@@ -114,6 +112,4 @@ class DetailRepository @Inject constructor(
             }
         }
     }
-
-
 }

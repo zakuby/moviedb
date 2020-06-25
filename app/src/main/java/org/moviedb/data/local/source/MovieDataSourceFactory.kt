@@ -3,14 +3,14 @@ package org.moviedb.data.local.source
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import org.moviedb.data.local.models.Movie
 import org.moviedb.data.local.repository.MovieRepository
 import org.moviedb.data.local.source.MovieDataSource.SourceType
-import javax.inject.Inject
-import javax.inject.Singleton
 
 @Singleton
 class MovieDataSourceFactory @Inject constructor(private val repository: MovieRepository) : DataSource.Factory<Int, Movie>() {

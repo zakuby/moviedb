@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.paging.PageKeyedDataSource
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.moviedb.data.local.models.Genre
@@ -13,8 +15,6 @@ import org.moviedb.data.remote.ApiCallHelper
 import org.moviedb.data.remote.Result
 import org.moviedb.data.remote.TheMovieDbServices
 import org.moviedb.data.remote.response.ErrorResponse
-import javax.inject.Inject
-import javax.inject.Singleton
 
 @Singleton
 class MovieRepository @Inject constructor(private val services: TheMovieDbServices) {
@@ -62,7 +62,6 @@ class MovieRepository @Inject constructor(private val services: TheMovieDbServic
         }
     }
 
-
     fun fetchMovie(
         scope: CoroutineScope,
         type: SourceType,
@@ -85,5 +84,4 @@ class MovieRepository @Inject constructor(private val services: TheMovieDbServic
             }
         }
     }
-
 }

@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import javax.inject.Inject
 import org.moviedb.data.local.models.Movie
 import org.moviedb.data.local.repository.MovieRepository
 import org.moviedb.data.local.source.MovieDataSource
 import org.moviedb.data.local.source.MovieDataSourceFactory
 import org.moviedb.data.remote.response.ErrorResponse
 import org.moviedb.ui.base.BaseViewModel
-import javax.inject.Inject
 
 class MoviesViewModel @Inject constructor(
     repository: MovieRepository,

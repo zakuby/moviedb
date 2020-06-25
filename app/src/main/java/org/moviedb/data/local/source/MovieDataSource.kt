@@ -31,8 +31,7 @@ class MovieDataSource constructor(
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Movie>) =
         repository.fetchMovieInitial(scope, sourceType, 1, keywords, callback, errorResponse, initialLoading, initialEmpty)
 
-
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>)  =
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) =
         repository.fetchMovie(scope, sourceType, params.key, keywords, callback)
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {}

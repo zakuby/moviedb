@@ -8,9 +8,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.squareup.picasso.Picasso
-import org.moviedb.R
 import java.text.SimpleDateFormat
 import java.util.*
+import org.moviedb.R
 
 @BindingAdapter("loadImageUrl")
 fun loadImageUrl(imgView: ImageView, url: String?) {

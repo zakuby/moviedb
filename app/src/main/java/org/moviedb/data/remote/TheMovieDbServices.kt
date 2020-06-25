@@ -10,8 +10,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.text.SimpleDateFormat
-import java.util.*
 
 interface TheMovieDbServices {
 
@@ -56,5 +54,4 @@ interface TheMovieDbServices {
         @Path("id") id: Int,
         @Query("page") page: Int = 1
     ): Response<BaseListResponse<Review>>
-
 }

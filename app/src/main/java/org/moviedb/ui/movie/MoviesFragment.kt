@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.dlg_bottom_filter.*
 import org.moviedb.R
 import org.moviedb.adapters.BottomFilterGenreListAdapter
@@ -23,7 +24,6 @@ import org.moviedb.data.remote.Result
 import org.moviedb.databinding.FragmentMoviesBinding
 import org.moviedb.ui.base.BaseFragment
 import org.moviedb.utils.observe
-import javax.inject.Inject
 
 class MoviesFragment : BaseFragment<FragmentMoviesBinding>(R.layout.fragment_movies) {
 
@@ -57,7 +57,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(R.layout.fragment_mov
         }
     }
 
-    private fun setupSearchView(){
+    private fun setupSearchView() {
         binding.searchView.apply {
             val query = this@MoviesFragment.viewModel.searchQuery.get()
             setQuery(query, false)
@@ -80,13 +80,13 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(R.layout.fragment_mov
     private fun subscribeUI() {
         observe(viewModel.movies, adapter::submitList)
         observe(viewModel.genres, { result ->
-            when(result){
+            when (result) {
                 is Result.Success -> setButtonFilterListener(result.data)
             }
         })
     }
 
-    private fun navigateToDetail(movie: Movie){
+    private fun navigateToDetail(movie: Movie) {
         val action = MoviesFragmentDirections.actionBottomNavFragmentToDetailFragment(movie.id)
         findNavController().navigate(action)
     }

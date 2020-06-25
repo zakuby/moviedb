@@ -23,7 +23,8 @@ class DetailReviewDataSource constructor(
     ) = repository.fetchReviewsInitial(scope, id, initialEmpty, initialLoading, callback)
 
     override fun loadAfter(
-        params: LoadParams<Int>, callback: LoadCallback<Int, Review>
+        params: LoadParams<Int>,
+        callback: LoadCallback<Int, Review>
     ) = repository.fetchReviews(scope, params.key + 1, id, callback)
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Review>) {}

@@ -6,10 +6,10 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
-import androidx.preference.PreferenceManager
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.preference.PreferenceManager
 import dagger.android.support.DaggerAppCompatActivity
 import org.moviedb.R
 import org.moviedb.utils.setWhiteStatusBar
