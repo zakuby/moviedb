@@ -12,10 +12,6 @@
     <string name="movie_detail_overview">Overview</string>
     <string name="movie_detail_top_billed">Top Billed Cast</string>
     <string name="title_settings">Settings</string>
-    <string name="error_response_data">Something wrong with response data.</string>
-    <string name="error_internal">Internal server error.</string>
-    <string name="error_hotspot_login">Hotspot login required.</string>
-    <string name="error_request_timeout">Request Timeout.</string>
     <string name="hint_search_movie">Search Movies…</string>
 
     <string name="pref_key_language" translatable="false">key_language</string>

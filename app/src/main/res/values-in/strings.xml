@@ -8,10 +8,6 @@
     <string name="movie_detail_top_billed">Aktor Utama</string>
     <string name="movie_list_more_info">Info lebih lanjut</string>
     <string name="title_settings">Pengaturan</string>
-    <string name="error_response_data">Ada yang salah dengan data respons.</string>
-    <string name="error_internal">Kesalahan server dari dalam.</string>
-    <string name="error_hotspot_login">Diperlukan login hotspot.</string>
-    <string name="error_request_timeout">Permintaan Timeout</string>
     <string name="hint_search_movie">Cari Film…</string>
     <string name="pref_language_summary">Pilih bahasa Inggris atau Indoneisa.</string>
     <string name="pref_language_name">Bahasa</string>

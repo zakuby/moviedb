@@ -1,0 +1,209 @@
+{
+  "page": 1,
+  "total_results": 10,
+  "total_pages": 1,
+  "results": [
+    {
+      "popularity": 96.894,
+      "vote_count": 2206,
+      "video": false,
+      "poster_path": "\/5EufsDwXdY2CVttYOk2WtYhgKpa.jpg",
+      "id": 570670,
+      "adult": false,
+      "backdrop_path": "\/uZMZyvarQuXLRqf3xdpdMqzdtjb.jpg",
+      "original_language": "en",
+      "original_title": "The Invisible Man",
+      "genre_ids": [
+        27,
+        878,
+        53
+      ],
+      "title": "The Invisible Man",
+      "vote_average": 7.2,
+      "overview": "When Cecilia's abusive ex takes his own life and leaves her his fortune, she suspects his death was a hoax. As a series of coincidences turn lethal, Cecilia works to prove that she is being hunted by someone nobody can see.",
+      "release_date": "2020-02-26"
+    },
+    {
+      "popularity": 105.07,
+      "vote_count": 8093,
+      "video": false,
+      "poster_path": "\/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+      "id": 496243,
+      "adult": false,
+      "backdrop_path": "\/ApiBzeaa95TNYliSbQ8pJv4Fje7.jpg",
+      "original_language": "ko",
+      "original_title": "기생충",
+      "genre_ids": [
+        35,
+        18,
+        53
+      ],
+      "title": "Parasite",
+      "vote_average": 8.5,
+      "overview": "All unemployed, Ki-taek's family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.",
+      "release_date": "2019-05-30"
+    },
+    {
+      "popularity": 84.103,
+      "vote_count": 220,
+      "video": false,
+      "poster_path": "\/yx4cp1ljJMDSFeEex0Zjv45b55E.jpg",
+      "id": 581859,
+      "adult": false,
+      "backdrop_path": "\/Aq5Zhj9iaTF6BEKNk05dlUxeHKa.jpg",
+      "original_language": "en",
+      "original_title": "Da 5 Bloods",
+      "genre_ids": [
+        18,
+        10752
+      ],
+      "title": "Da 5 Bloods",
+      "vote_average": 6.9,
+      "overview": "Four African-American Vietnam veterans return to Vietnam. They are in search of the remains of their fallen squad leader and the promise of buried treasure. These heroes battle forces of humanity and nature while confronted by the lasting ravages of the immorality of the Vietnam War.",
+      "release_date": "2020-06-12"
+    },
+    {
+      "popularity": 101.395,
+      "vote_count": 13355,
+      "video": false,
+      "poster_path": "\/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+      "id": 475557,
+      "adult": false,
+      "backdrop_path": "\/f5F4cRhQdUbyVbB5lTNCwUzD6BP.jpg",
+      "original_language": "en",
+      "original_title": "Joker",
+      "genre_ids": [
+        80,
+        18,
+        53
+      ],
+      "title": "Joker",
+      "vote_average": 8.2,
+      "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+      "release_date": "2019-10-02"
+    },
+    {
+      "popularity": 91.66,
+      "vote_count": 18639,
+      "video": false,
+      "poster_path": "\/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+      "id": 299536,
+      "adult": false,
+      "backdrop_path": "\/lmZFxXgJE3vgrciwuDib0N8CfQo.jpg",
+      "original_language": "en",
+      "original_title": "Avengers: Infinity War",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "title": "Avengers: Infinity War",
+      "vote_average": 8.3,
+      "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+      "release_date": "2018-04-25"
+    },
+    {
+      "popularity": 71.188,
+      "vote_count": 2307,
+      "video": false,
+      "poster_path": "\/f4aul3FyD3jv3v4bul1IrkWZvzq.jpg",
+      "id": 508439,
+      "adult": false,
+      "backdrop_path": "\/dW6yBuKwiMeronJZw8kozYLMorB.jpg",
+      "original_language": "en",
+      "original_title": "Onward",
+      "genre_ids": [
+        12,
+        16,
+        35,
+        14,
+        10751
+      ],
+      "title": "Onward",
+      "vote_average": 7.9,
+      "overview": "In a suburban fantasy world, two teenage elf brothers embark on an extraordinary quest to discover if there is still a little magic left out there.",
+      "release_date": "2020-02-29"
+    },
+    {
+      "popularity": 90.418,
+      "vote_count": 0,
+      "video": false,
+      "poster_path": "\/ucktgbaMSaETUDLUBp1ubGD6aNj.jpg",
+      "id": 619592,
+      "adult": false,
+      "backdrop_path": "\/jAtO4ci8Tr5jDmg33XF3OZ8VPah.jpg",
+      "original_language": "en",
+      "original_title": "Force of Nature",
+      "genre_ids": [
+        28,
+        18
+      ],
+      "title": "Force of Nature",
+      "vote_average": 0,
+      "overview": "A gang of thieves plan a heist during a hurricane and encounter trouble when a disgraced cop tries to force everyone in the building to evacuate.",
+      "release_date": "2020-07-02"
+    },
+    {
+      "popularity": 92.577,
+      "vote_count": 9939,
+      "video": false,
+      "poster_path": "\/xT98tLqatZPQApyRmlPL12LtiWp.jpg",
+      "id": 122917,
+      "adult": false,
+      "backdrop_path": "\/bVmSXNgH1gpHYTDyF9Q826YwJT5.jpg",
+      "original_language": "en",
+      "original_title": "The Hobbit: The Battle of the Five Armies",
+      "genre_ids": [
+        28,
+        12,
+        14
+      ],
+      "title": "The Hobbit: The Battle of the Five Armies",
+      "vote_average": 7.3,
+      "overview": "Immediately after the events of The Desolation of Smaug, Bilbo and the dwarves try to defend Erebor's mountain of treasure from others who claim it: the men of the ruined Laketown and the elves of Mirkwood. Meanwhile an army of Orcs led by Azog the Defiler is marching on Erebor, fueled by the rise of the dark lord Sauron. Dwarves, elves and men must unite, and the hope for Middle-Earth falls into Bilbo's hands.",
+      "release_date": "2014-12-10"
+    },
+    {
+      "popularity": 80.199,
+      "vote_count": 4966,
+      "video": false,
+      "poster_path": "\/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
+      "id": 181812,
+      "adult": false,
+      "backdrop_path": "\/jOzrELAzFxtMx2I4uDGHOotdfsS.jpg",
+      "original_language": "en",
+      "original_title": "Star Wars: The Rise of Skywalker",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "title": "Star Wars: The Rise of Skywalker",
+      "vote_average": 6.5,
+      "overview": "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues. With the power and knowledge of generations behind them, the final battle begins.",
+      "release_date": "2019-12-18"
+    },
+    {
+      "popularity": 81.125,
+      "vote_count": 6223,
+      "video": false,
+      "poster_path": "\/ykUEbfpkf8d0w49pHh0AD2KrT52.jpg",
+      "id": 420817,
+      "adult": false,
+      "backdrop_path": "\/v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg",
+      "original_language": "en",
+      "original_title": "Aladdin",
+      "genre_ids": [
+        12,
+        35,
+        14,
+        10749,
+        10751
+      ],
+      "title": "Aladdin",
+      "vote_average": 7.1,
+      "overview": "A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.",
+      "release_date": "2019-05-22"
+    }
+  ]
+}
