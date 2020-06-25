@@ -20,11 +20,12 @@ buildscript {
             'rx_java'               : '2.1.9',
             'rx_android'            : '2.0.2',
             'rx_kotlin'             : '2.1.0',
-            'retrofit'              : '2.3.0',
+            'retrofit'              : '2.9.0',
             'okhttp'                : '3.8.1',
             'gson'                  : '1.5.0',
             'picasso'               : '2.71828',
 
+            'coroutines'            : '1.3.0',
             'navigation'            : '2.2.1',
             'lifeycle'              : '2.2.0',
             'paging'                : '2.1.1',
@@ -67,14 +68,20 @@ buildscript {
                     'rxandroid': "io.reactivex.rxjava2:rxandroid:${versions.rx_android}",
                     'rxkotlin' : "io.reactivex.rxjava2:rxkotlin:${versions.rx_kotlin}"
             ],
-            square     : [
+            network     : [
                     'retrofit': "com.squareup.retrofit2:retrofit:${versions.retrofit}",
                     'adapter_rxjava' : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
                     'gson' : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
                     'okhttp' : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
             ],
+            coroutines: [
+                    'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
+                    'core' : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
+            ],
             aac: [
-                    'extensions'    : "android.arch.lifecycle:extensions:${versions.lifeycle}",
+                    'extensions'    : "androidx.lifecycle:lifecycle-extensions:${versions.lifeycle}",
+                    'livedata'      : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifeycle}",
+                    'viewmodel'     : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifeycle}",
                     'paging'        : "androidx.paging:paging-runtime-ktx:${versions.paging}"
             ],
             others     : [
